@@ -1,4 +1,6 @@
+import random
 from PyQt5.QtWidgets import *
+import memcard
 app = QApplication([])
 window= QWidget()
 mainLine = QVBoxLayout()
@@ -24,15 +26,45 @@ answer1 = QRadioButton("1")
 answer2 = QRadioButton("2")
 answer3 = QRadioButton("3")
 answer4 = QRadioButton("4")
+answers = [answer1,answer2,answer3,answer4]
+
 answersLine = QVBoxLayout()
 answersLine.addWidget(answer1)
 answersLine.addWidget(answer2)
 answersLine.addWidget(answer3)
 answersLine.addWidget(answer4)
-
-
+result = QLabel("Результат")
+answersLine.addWidget(result)
+result.hide()
+answerBtn = QPushButton("Відповісти")
+nextQBtn = QPushButton("Наступне питання")
 answersGroup.setLayout(answersLine)
+
 mainLine.addWidget(answersGroup)
+mainLine.addWidget(answerBtn)
+mainLine.addWidget(nextQBtn)
+nextQBtn.hide()
+def setQuest():
+    random.shuffle(answers)
+    pitanna.setText(memcard.quest[memcard.currentQuest]["питання"])
+    answers[0].setText(memcard.quest[memcard.currentQuest]["Правильна відповідь"])
+    answers[1].setText(memcard.quest[memcard.currentQuest]["не правильна1"])
+    answers[2].setText(memcard.quest[memcard.currentQuest]["не правильна2"])
+    answers[3].setText(memcard.quest[memcard.currentQuest]["не правильна3"])
+setQuest()
+def showResult():
+    answers[0].hide()
+    answers[1].hide()
+    answers[2].hide()
+    answers[3].hide()
+    answerBtn.hide()
+    result.show()
+    nextQBtn.show()
+    if answers [0].isChecked():
+        result.setText("Правильно")
+    else:
+        result.setText("не правильно")
+answerBtn.clicked.connect(showResult)
 window.setLayout(mainLine)
 window.show()
 app.exec()
