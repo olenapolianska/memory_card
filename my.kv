@@ -1,0 +1,99 @@
+<MainScreen>:
+    FloatLayout:
+        Image:
+            allow_stretch: True
+            size_hint: 1, 1
+            source: 'img.png'
+        FloatLayout:
+            Image:
+                id: ball
+                size_hint: 0.3, 0.3
+                pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+                allow_stretch: True
+                source: 'football.png'
+            Button:
+                background_color: 1, 0, 0, 0.5
+                size_hint: 0.3, 0.3
+                pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+                on_press: root.clickBtn()
+                on_release: print("hello")
+                on_release:root.clickend()
+
+        Label:
+            id: clickScore
+            text: "0"
+            pos_hint: {'center_x': 0.5, 'top': 0.8}
+            size_hint: 0.1, 0.1
+            canvas.before:
+				Color:
+					rgba: 1, 0, 0, 1
+				Rectangle:
+					size: self.size
+					pos: self.pos
+
+        Button:
+            text: "Магазин"
+            pos_hint: {'center_x': 0.5, 'y': 0}
+            size_hint: 0.3, 0.3
+            on_press: root.clickShopBtn()
+
+<Shop>
+    BoxLayout:
+        orientation: 'vertical'
+        #створити кнопку, для переходу на головне вікно
+        ScrollView:
+            size_hint_y: None
+            size_hint: 1, 1
+            GridLayout:
+                size_hint_y: None
+                height: self.minimum_height
+                id: shopItems
+                cols: 1
+                row_default_height: 100
+                FloatLayout:
+                    Button:
+                        size_hint: 1, 1
+                        pos_hint: {'center_x': 0.5, 'center_y':0.5}
+                        on_press: root.buyItem(150, 10)
+                    Image:
+                        size_hint: 0.1, 1
+                        pos_hint: {'x': 0, 'center_y':0.5}
+                        source: 'ronaldo.png'
+                    Label:
+                        text: "+10 балів за клік"
+                        size_hint: 0.2, 0.2
+                        pos_hint: {'right': 1, 'center_y':0.5}
+                FloatLayout:
+                    Button:
+                        size_hint: 1, 1
+                        pos_hint: {'center_x': 0.5, 'center_y':0.5}
+                        on_press: root.buyItem(150, 10)
+                    Image:
+                        size_hint: 0.1, 1
+                        pos_hint: {'x': 0, 'center_y':0.5}
+                        source: 'ronaldo.png'
+                    Label:
+                        text: "+дофіга балів за клік"
+                        size_hint: 0.2, 0.2
+                        pos_hint: {'right': 1, 'center_y':0.5}
+
+                FloatLayout:
+                    Button:
+                        size_hint: 1, 1
+                        pos_hint: {'center_x': 0.5, 'center_y':0.5}
+                        on_press: root.buyItem(150, 10)
+                    Image:
+                        size_hint: 0.1, 1
+                        pos_hint: {'x': 0, 'center_y':0.5}
+                        source: 'ronaldo.png'
+                    Label:
+                        text: "+дуже багато балів за клік"
+                        size_hint: 0.2, 0.2
+                        pos_hint: {'right': 1, 'center_y':0.5}
+        Button:
+            on_press:root.backToGame()
+
+            text: "назад до гри"
+            size_hint: 0.3, 0.3
+            pos_hint: {'chenter_x':1 , 'center_y':1}
+

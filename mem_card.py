@@ -1,6 +1,7 @@
 import random
 from PyQt5.QtWidgets import *
 import memcard
+import mem
 app = QApplication([])
 window= QWidget()
 mainLine = QVBoxLayout()
@@ -64,7 +65,10 @@ def showResult():
         result.setText("Правильно")
     else:
         result.setText("не правильно")
+
+
 answerBtn.clicked.connect(showResult)
+menuBtn.clicked.connect(mem.menuWind)
 window.setLayout(mainLine)
 window.show()
 app.exec()
