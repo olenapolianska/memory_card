@@ -1,20 +1,24 @@
 from PyQt5.QtWidgets import *
+
 import memcard
-def menuWind():
+
+def editWind():
     window = QDialog()
     questLbl = QLabel("Питання")
     questEdit = QLineEdit()
+    questEdit.setText(memcard.quest[memcard.currentQuest]["питання"])
 
     rightAnswerLbl = QLabel("Правильна відповідь")
     questEdit2 = QLineEdit()
+    questEdit2.setText(memcard.quest[memcard.currentQuest]["Правильна відповідь"])
+
+    redBtn = QPushButton("Редагувати")
 
     nAnswerLbl = QLabel("Неправильна відповідь")
     questEdit3 = QLineEdit()
 
-
     n2AnswerLbl = QLabel("Неправильна відповідь")
     questEdit4 = QLineEdit()
-
 
     n3AnswerLbl = QLabel("Неправильна відповідь")
     questEdit5 = QLineEdit()
@@ -30,6 +34,7 @@ def menuWind():
     h2.addWidget(rightAnswerLbl)
     h2.addWidget(questEdit2)
     mainLine.addLayout(h2)
+
     h3 = QHBoxLayout()
     h3.addWidget(nAnswerLbl)
     h3.addWidget(questEdit3)
@@ -45,19 +50,8 @@ def menuWind():
     h5.addWidget(questEdit5)
 
     mainLine.addLayout(h5)
-    def addFuns():
-        memcard.qeust.append (
-            {
-                "питання": questEdit.text(),
-                "Правильна відповідь": "",
-                "не правильна1 ": "",
-                "не правильна2 ": "",
-                "не правильна3 ": ""
-            }
-        )
-    mainLine.addWidget(addBtn)
-    addBtn.clicked.connect(addFuns)
 
+    mainLine.addWidget(redBtn)
     window.setLayout(mainLine)
     window.show()
     window.exec()

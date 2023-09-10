@@ -2,6 +2,7 @@ import random
 from PyQt5.QtWidgets import *
 import memcard
 import mem
+import new
 app = QApplication([])
 window= QWidget()
 mainLine = QVBoxLayout()
@@ -39,12 +40,15 @@ answersLine.addWidget(result)
 result.hide()
 answerBtn = QPushButton("Відповісти")
 nextQBtn = QPushButton("Наступне питання")
+editQBtn = QPushButton("Редагувати")
 answersGroup.setLayout(answersLine)
 
 mainLine.addWidget(answersGroup)
 mainLine.addWidget(answerBtn)
 mainLine.addWidget(nextQBtn)
+mainLine.addWidget(editQBtn)
 nextQBtn.hide()
+
 def setQuest():
     random.shuffle(answers)
     pitanna.setText(memcard.quest[memcard.currentQuest]["питання"])
@@ -69,6 +73,7 @@ def showResult():
 
 answerBtn.clicked.connect(showResult)
 menuBtn.clicked.connect(mem.menuWind)
+editQBtn.clicked.connect(new.editWind)
 window.setLayout(mainLine)
 window.show()
 app.exec()
