@@ -4,6 +4,24 @@ import memcard
 import mem
 import new
 app = QApplication([])
+app.setStyleSheet("""
+        QWidget{
+            background:#6CC7EE;
+        }
+        
+        QPushButton
+        {
+            background-color: #78ff90;
+            border-style:groove;
+            font-family: cursive;
+            min-width: 6em;
+            padding: 6px;
+            border-width:4px;
+            border-color: #25BEFF;
+            color:#074734
+        }
+        
+    """)
 window= QWidget()
 mainLine = QVBoxLayout()
 window.resize(500, 500)
@@ -70,10 +88,27 @@ def showResult():
     else:
         result.setText("не правильно")
 
+def nextFunc():
+    random.shuffle(answers)
+    answerBtn.show()
+    answers[0].show()
+    answers[1].show()
+    answers[2].show()
+    answers[3].show()
+    result.hide()
+    nextQBtn.hide()
+    memcard.currentQuest += 1
+    setQuest()
 
+def editQuestFuns():
+    window.hide()
+    new.editWind()
+    window.show()
+    setQuest()
+nextQBtn.clicked.connect(nextFunc)
 answerBtn.clicked.connect(showResult)
 menuBtn.clicked.connect(mem.menuWind)
-editQBtn.clicked.connect(new.editWind)
+editQBtn.clicked.connect(editQuestFuns)
 window.setLayout(mainLine)
 window.show()
 app.exec()

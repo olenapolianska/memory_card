@@ -16,12 +16,14 @@ def editWind():
 
     nAnswerLbl = QLabel("Неправильна відповідь")
     questEdit3 = QLineEdit()
+    questEdit3.setText(memcard.quest[memcard.currentQuest]["не правильна1"])
 
     n2AnswerLbl = QLabel("Неправильна відповідь")
     questEdit4 = QLineEdit()
-
+    questEdit4.setText(memcard.quest[memcard.currentQuest]["не правильна2"])
     n3AnswerLbl = QLabel("Неправильна відповідь")
     questEdit5 = QLineEdit()
+    questEdit5.setText(memcard.quest[memcard.currentQuest]["не правильна3"])
     addBtn = QPushButton("Меню")
 
     mainLine = QVBoxLayout()
@@ -52,6 +54,17 @@ def editWind():
     mainLine.addLayout(h5)
 
     mainLine.addWidget(redBtn)
+    def addFuns():
+        memcard.quest[memcard.currentQuest]={
+            "питання": questEdit.text(),
+            "Правильна відповідь": questEdit2.text(),
+            "не правильна1": questEdit3.text(),
+            "не правильна2": questEdit4.text(),
+            "не правильна3": questEdit5.text()
+        }
+        window.close()
+
+    redBtn.clicked.connect(addFuns)
     window.setLayout(mainLine)
     window.show()
     window.exec()

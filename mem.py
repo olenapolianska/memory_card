@@ -18,7 +18,7 @@ def menuWind():
 
     n3AnswerLbl = QLabel("Неправильна відповідь")
     questEdit5 = QLineEdit()
-    addBtn = QPushButton("Меню")
+    addBtn = QPushButton("додати")
 
     mainLine = QVBoxLayout()
 
@@ -46,13 +46,13 @@ def menuWind():
 
     mainLine.addLayout(h5)
     def addFuns():
-        memcard.qeust.append (
+        memcard.quest.append (
             {
                 "питання": questEdit.text(),
-                "Правильна відповідь": "",
-                "не правильна1 ": "",
-                "не правильна2 ": "",
-                "не правильна3 ": ""
+                "Правильна відповідь": questEdit2.text(),
+                "не правильна1": questEdit3.text(),
+                "не правильна2": questEdit4.text(),
+                "не правильна3": questEdit5.text()
             }
         )
     mainLine.addWidget(addBtn)
